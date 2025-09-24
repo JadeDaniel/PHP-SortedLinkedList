@@ -1,0 +1,14 @@
+includes:
+    - phar://phpstan.phar/conf/config.levelmax.neon
+    - phar://phpstan.phar/conf/bleedingEdge.neon      # https://phpstan.org/blog/what-is-bleeding-edge
+    - vendor/shipmonk/phpstan-rules/rules.neon
+#    - vendor/phpstan/phpstan-strict-rules/rules.neon  # https://github.com/phpstan/phpstan-strict-rules
+parameters:
+    checkImplicitMixed: true                                  # https://phpstan.org/config-reference#checkimplicitmixed
+    checkBenevolentUnionTypes: true                           # https://phpstan.org/config-reference#checkbenevolentuniontypes
+    checkUninitializedProperties: true                        # https://phpstan.org/config-reference#checkuninitializedproperties
+    checkMissingCallableSignature: true                       # https://phpstan.org/config-reference#vague-typehints
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true  # https://phpstan.org/config-reference#checktoowidereturntypesinprotectedandpublicmethods
+    reportAnyTypeWideningInVarTag: true                       # https://phpstan.org/config-reference#reportanytypewideninginvartag
+    reportPossiblyNonexistentConstantArrayOffset: true        # https://phpstan.org/config-reference#reportpossiblynonexistentconstantarrayoffset
+    reportPossiblyNonexistentGeneralArrayOffset: true         # https://phpstan.org/config-reference#reportpossiblynonexistentgeneralarrayoffset
