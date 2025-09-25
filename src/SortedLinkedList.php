@@ -2,6 +2,8 @@
 
 namespace Jade;
 
+use Exception;
+
 class SortedLinkedList
 {
 
@@ -70,6 +72,20 @@ class SortedLinkedList
         } else {
             $precedent->append($new);
         }
+    }
+
+    /**
+     * @return list<int|string>
+     */
+    public function toArray(): array
+    {
+        $array = [];
+        $pointer = $this->head;
+        while ($pointer !== null) {
+            $array[] = $pointer->getValue();
+            $pointer = $pointer->next();
+        }
+         return $array;
     }
 
 }
