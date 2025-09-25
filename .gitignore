@@ -1,0 +1,8 @@
+# project files
+.idea
+
+# composer artifacts
+vendor
+
+# macos artifacts
+.DS_Store
