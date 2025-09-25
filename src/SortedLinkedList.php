@@ -40,10 +40,6 @@ abstract class Node
 
     abstract function greaterThan(Node $other): bool;
 
-    /**
-     * @param int $node
-     * @return void
-     */
     function append(Node $node): void
     {
         $temp = $this->next;
@@ -68,7 +64,7 @@ class StringNode extends Node {
 
     public function getValue(): string
     {
-        return parent::getValue();
+        return (string) parent::getValue();
     }
 
     /**
@@ -90,23 +86,27 @@ class IntNode extends Node {
 
     public function getValue(): int
     {
-        return parent::getValue();
+        return (int)parent::getValue();
+    }
+
+    function greaterThan(Node $other): bool
+    {
+        if (!$other instanceof IntNode) {
+            throw new Exception("Invalid comparison between IntNode and " . $other::class);
+        }
+        return $this->getValue() > $other->getValue();
     }
 }
 
 class SortedLinkedList
 {
-    private function containsClassName(): string {
-        return $this->head::class;
-    }
-
-    public function __toString() {
-        if ($this->head == null ) {
+    public function __toString(): string {
+        if ($this->head === null ) {
             return "Empty List";
         }
 
         $n = $this->head;
-        while( $n->next() != null ) {
+        while( $n->next() !== null ) {
             echo $n->getValue() . " ";
             $n = $n->next();
         }
@@ -120,20 +120,20 @@ class SortedLinkedList
      * @throws Exception
      */
     private function findPrecedent(Node $new): ?Node {
-        if ($this->head == null) {
+        if ($this->head === null) {
             throw new Exception("findPrecedent must not be called on an empty list");
         }
 
-        if ($this->head->getValue() > $new->getValue()) { // todo comparison operator
+        if ($this->head->greaterThan($new)) {
             return null;
         }
 
         $candidate = $this->head;
 
-        while( $new->getValue() > $candidate->getValue()) {
-            if ( $candidate->next() == null) return $candidate;
+        while( $new->greaterThan($candidate)) {
+            if ( $candidate->next() === null) return $candidate;
 
-            if ( $candidate->next()->getValue() > $new->getValue()) return $candidate;
+            if ( $candidate->next()->greaterThan($new)) return $candidate;
             $candidate = $candidate->next();
         }
 
@@ -151,8 +151,8 @@ class SortedLinkedList
             return;
         }
 
-        if ($this->containsClassName() != $new::class) {
-            throw new Exception("Cannot add a node of class " . $new::class . " to a list of class " . $this->containsClassName());
+        if ($this->head::class !== $new::class) {
+            throw new Exception("Cannot add a " . $new::class . " node to a ". $this->head::class . " list.");
         }
 
         $precedent = $this->findPrecedent($new);
