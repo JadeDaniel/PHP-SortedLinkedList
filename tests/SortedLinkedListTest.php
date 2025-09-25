@@ -3,6 +3,7 @@
 namespace Jade;
 
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class SortedLinkedListTest extends TestCase
 {
@@ -63,6 +64,16 @@ class SortedLinkedListTest extends TestCase
             'Zanzibar',
             'Zanzicar',
         ], $list->toArray());
+    }
+
+    public function testMixed(): void
+    {
+        $list = new SortedLinkedList();
+        $list->add(new StringNode('Zanzibar'));
+
+        $this->expectException(Throwable::class);
+
+        $list->add(new IntNode(10));
     }
 
 }

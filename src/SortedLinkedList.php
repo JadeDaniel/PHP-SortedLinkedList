@@ -3,6 +3,7 @@
 namespace Jade;
 
 use Exception;
+use InvalidArgumentException;
 
 class SortedLinkedList
 {
@@ -53,6 +54,9 @@ class SortedLinkedList
         return $candidate;
     }
 
+    /**
+     * @throws Exception
+     */
     public function add(Node $new): void
     {
         // TODO guard only right types added! Also cover in test suite
@@ -62,7 +66,7 @@ class SortedLinkedList
         }
 
         if ($this->head::class !== $new::class) {
-            throw new Exception('Cannot add a ' . $new::class . ' node to a ' . $this->head::class . ' list.');
+            throw new InvalidArgumentException('Cannot add a ' . $new::class . ' node to a ' . $this->head::class . ' list.');
         }
 
         $precedent = $this->findPrecedent($new);
