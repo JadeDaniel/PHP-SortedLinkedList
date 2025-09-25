@@ -1,31 +1,34 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace Jade;
 
 class SortedLinkedList
 {
-    public function __toString(): string {
-        if ($this->head === null ) {
-            return "Empty List";
+
+    private ?Node $head = null;
+
+    public function __toString(): string
+    {
+        if ($this->head === null) {
+            return 'Empty List';
         }
 
         $n = $this->head;
-        while( $n->next() !== null ) {
-            echo $n->getValue() . " ";
+        while ( $n->next() !== null) {
+            echo $n->getValue() . ' ';
             $n = $n->next();
         }
-        echo $n->getValue() . " ";
-        return "";
+        echo $n->getValue() . ' ';
+        return '';
     }
-
-    private ?Node $head = null;
 
     /**
      * @throws Exception
      */
-    private function findPrecedent(Node $new): ?Node {
+    private function findPrecedent(Node $new): ?Node
+    {
         if ($this->head === null) {
-            throw new Exception("findPrecedent must not be called on an empty list");
+            throw new Exception('findPrecedent must not be called on an empty list');
         }
 
         if ($this->head->greaterThan($new)) {
@@ -34,29 +37,30 @@ class SortedLinkedList
 
         $candidate = $this->head;
 
-        while( $new->greaterThan($candidate)) {
-            if ( $candidate->next() === null) return $candidate;
+        while ( $new->greaterThan($candidate)) {
+            if ( $candidate->next() === null) {
+                return $candidate;
+            }
 
-            if ( $candidate->next()->greaterThan($new)) return $candidate;
+            if ( $candidate->next()->greaterThan($new)) {
+                return $candidate;
+            }
             $candidate = $candidate->next();
         }
 
         return $candidate;
     }
 
-
-
     public function add(Node $new): void
     {
         // TODO guard only right types added! Also cover in test suite
-        if ($this->head === null)
-        {
+        if ($this->head === null) {
             $this->head = $new;
             return;
         }
 
         if ($this->head::class !== $new::class) {
-            throw new Exception("Cannot add a " . $new::class . " node to a ". $this->head::class . " list.");
+            throw new Exception('Cannot add a ' . $new::class . ' node to a ' . $this->head::class . ' list.');
         }
 
         $precedent = $this->findPrecedent($new);
@@ -67,4 +71,5 @@ class SortedLinkedList
             $precedent->append($new);
         }
     }
+
 }

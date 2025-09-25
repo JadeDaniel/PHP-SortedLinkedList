@@ -1,4 +1,5 @@
-<?php
+<?php declare(strict_types = 1);
+
 namespace Jade;
 
 use PHPUnit\Framework\TestCase;
@@ -29,4 +30,5 @@ class SortedLinkedListTest extends TestCase
         echo $list;
         echo "\n";
     }
+
 }
