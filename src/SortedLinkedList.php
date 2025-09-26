@@ -59,7 +59,6 @@ class SortedLinkedList
      */
     public function add(Node $new): void
     {
-        // TODO guard only right types added! Also cover in test suite
         if ($this->head === null) {
             $this->head = $new;
             return;
