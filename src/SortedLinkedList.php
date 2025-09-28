@@ -12,6 +12,20 @@ class SortedLinkedList
 
     private ?Node $head = null;
 
+    /**
+     * @param ?array<int|string> $values
+     *
+     * @throws Exception
+     */
+    public function __construct(?array $values = null)
+    {
+        if ($values) {
+            foreach ($values as $value) {
+                $this->add($value);
+            }
+        }
+    }
+
     public function __toString(): string
     {
         if ($this->head === null) {

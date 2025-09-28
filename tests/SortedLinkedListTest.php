@@ -123,21 +123,12 @@ class SortedLinkedListTest extends TestCase
 
     public function sampleIntList(): SortedLinkedList
     {
-        $list = new SortedLinkedList();
-        $list->add(10);
-        $list->add(4);
-        $list->add(6);
-        return $list;
+        return new SortedLinkedList([10, 4, 6]);
     }
 
     public function sampleStringList(): SortedLinkedList
     {
-        $list = new SortedLinkedList();
-        $list->add('Zanzibar');
-        $list->add('Africa');
-        $list->add('Botswana');
-        $list->add('Zanzicar');
-        return $list;
+        return new SortedLinkedList(['Zanzibar', 'Africa', 'Botswana', 'Zanzicar']);
     }
 
 }
