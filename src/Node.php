@@ -5,6 +5,9 @@ namespace Jade;
 abstract class Node
 {
 
+    // even though this is abstract, I wish I could call new Node(1) or new Node("abc").
+    // Is anyone working on this?
+
     private int|string $value;
 
     private ?Node $next = null;
@@ -30,21 +33,45 @@ abstract class Node
         return $this->next;
     }
 
-    abstract public function greaterThan(Node $other): bool;
-
-    public function append(Node $node): void
+    public function previous(): ?Node
     {
-        $temp = $this->next;
-        $this->next = $node;
-        $node->next = $temp;
+        return $this->prev;
     }
 
-    public function prepend(Node $node): void
+    abstract public function greaterThan(Node $other): bool;
+
+    public function insertAfter(Node $newNode): void
+    {
+        $temp = $this->next;
+        $temp?->setPrevious($newNode);
+        $newNode->setNext($temp);
+        $newNode->setPrevious($this);
+        $this->setNext($newNode);
+    }
+
+    public function insertBefore(Node $node): void
     {
         $temp = $this->prev;
+        $temp?->setNext($node);
+        $node->setPrevious($temp);
+        $node->setNext($this);
+        $this->setPrevious($node);
+    }
+
+    protected function setNext(?Node $node): void
+    {
+        $this->next = $node;
+    }
+
+    protected function setPrevious(?Node $node): void
+    {
         $this->prev = $node;
-        $node->prev = $temp;
-        $node->next = $this;
+    }
+
+    public function remove(): void
+    {
+        $this->prev?->setNext($this->next);
+        $this->next?->setPrevious($this->prev);
     }
 
 }

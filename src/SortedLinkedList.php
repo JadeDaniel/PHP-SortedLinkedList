@@ -4,6 +4,8 @@ namespace Jade;
 
 use Exception;
 use InvalidArgumentException;
+use function is_int;
+use function is_string;
 
 class SortedLinkedList
 {
@@ -57,23 +59,33 @@ class SortedLinkedList
     /**
      * @throws Exception
      */
-    public function add(Node $new): void
+    public function add(Node|int|string $new): void
     {
+        /**
+         * For convenience, allow passing raw scalars (int or string) and create the appropriate node
+         */
+
+        $node = match (true) {
+            is_string($new) => new StringNode($new),
+            is_int($new) => new IntNode($new),
+            $new instanceof Node => $new,
+        };
+
         if ($this->head === null) {
-            $this->head = $new;
+            $this->head = $node;
             return;
         }
 
-        if ($this->head::class !== $new::class) {
-            throw new InvalidArgumentException('Cannot add a ' . $new::class . ' node to a ' . $this->head::class . ' list.');
+        if ($this->head::class !== $node::class) {
+            throw new InvalidArgumentException('Cannot add a ' . $node::class . ' node to a ' . $this->head::class . ' list.');
         }
 
-        $precedent = $this->findPrecedent($new);
+        $precedent = $this->findPrecedent($node);
         if ($precedent === null) {
-            $this->head->prepend($new);
-            $this->head = $new;
+            $this->head->insertBefore($node);
+            $this->head = $node;
         } else {
-            $precedent->append($new);
+            $precedent->insertAfter($node);
         }
     }
 
@@ -89,6 +101,20 @@ class SortedLinkedList
             $pointer = $pointer->next();
         }
          return $array;
+    }
+
+    public function first(): ?Node
+    {
+        return $this->head;
+    }
+
+    public function find(int|string $value): ?Node
+    {
+        $node = $this->head;
+        while ($node !== null && $node->getValue() !== $value) {
+            $node = $node->next();
+        }
+        return $node;
     }
 
 }
