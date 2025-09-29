@@ -1,6 +1,7 @@
 {
   "name": "jade/sorted-linked-list",
   "description": "A linked list containing either strings or ints, that sorts nodes as they are added.",
+  "license": "proprietary",
   "autoload": {
     "psr-4": { "Jade\\": "src/" }
   },
