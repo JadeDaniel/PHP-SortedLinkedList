@@ -6,8 +6,20 @@ You can either add Int values or String values, but not both.
 An InvalidArgumentException will be thrown if values are mixed.
 
 # Usage
-A new sorted linked list can be created and new int or string nodes added as follows
+```PHP
+$list = new SortedLinkedList( ['World', 'Hello'] );
+
+$list->add('Igloo');
+
+echo $list->first()->next(); // 'Igloo'
+
+$list->find('Igloo')?->remove();
+
+echo $list; // 'Hello World'
 ```
+
+## Building a list
+```PHP
 $list = new SortedLinkedList();
 $list->add(new IntNode(10));
 $list->add(new IntNode(12));
@@ -23,7 +35,7 @@ echo $list;
 $list2 = new SortedLinkedList( [500, 1200, 3, 15] );
 ```
 
-```
+```PHP
 // String nodes can be used instead
 $list = new SortedLinkedList();
 $list->add(new StringNode("Zebra")); 
@@ -36,6 +48,24 @@ $list2 = new SortedLinkedList( ["Car", "Yoyo"] );
 
 Note that string and int types cannot be mixed in a single list. An exception will be thrown. 
 
+## Other methods
+```PHP
+// get the first node in a list
+$node = $list->getFirst();
+
+// retrieve node value
+$node->value();
+
+// given a node, get the next node
+$node2 = $node->next();
+
+// remove a node
+$node2->remove();
+
+// find a node by value
+$list->find(6);
+$list2->find("Apple");
+```
 
 # Checks
 Run `./check.sh` to lint, perform static analysis, and run the test suite
