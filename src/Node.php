@@ -4,10 +4,6 @@ namespace Jade;
 
 abstract class Node
 {
-
-    // even though this is abstract, I wish I could call new Node(1) or new Node("abc").
-    // Is anyone working on this?
-
     private int|string $value;
 
     private ?Node $next = null;
