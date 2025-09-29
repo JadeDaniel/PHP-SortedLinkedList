@@ -131,37 +131,42 @@ class SortedLinkedListTest extends TestCase
         return new SortedLinkedList(['Zanzibar', 'Africa', 'Botswana', 'Zanzicar']);
     }
 
-    public function testExplicitIntNodeConstructor() {
+    public function testExplicitIntNodeConstructor(): void
+    {
         $list1 = new SortedLinkedList();
         $list1->add(new IntNode(10));
 
         $list2 = new SortedLinkedList();
         $list2->add(10);
-        self::assertEquals( $list1, $list2 );
+        self::assertEquals($list1, $list2);
     }
 
-    public function testExplicitStringNodeConstructor() {
+    public function testExplicitStringNodeConstructor(): void
+    {
         $list1 = new SortedLinkedList();
-        $list1->add(new StringNode("Hello!"));
+        $list1->add(new StringNode('Hello!'));
 
         $list2 = new SortedLinkedList();
-        $list2->add("Hello!");
-        self::assertEquals( $list1, $list2 );
+        $list2->add('Hello!');
+        self::assertEquals($list1, $list2);
     }
 
-    public function testInitialIntNodeConstructor() {
-        $list1 = new SortedLinkedList( [10] );
+    public function testInitialIntNodeConstructor(): void
+    {
+        $list1 = new SortedLinkedList([10]);
 
         $list2 = new SortedLinkedList();
         $list2->add(10);
-        self::assertEquals( $list1, $list2 );
+        self::assertEquals($list1, $list2);
     }
 
-    public function testInitialStringNodeConstructor() {
-        $list1 = new SortedLinkedList( ["Yikes"] );
+    public function testInitialStringNodeConstructor(): void
+    {
+        $list1 = new SortedLinkedList(['Yikes']);
 
         $list2 = new SortedLinkedList();
-        $list2->add("Yikes");
-        self::assertEquals( $list1, $list2 );
+        $list2->add('Yikes');
+        self::assertEquals($list1, $list2);
     }
+
 }

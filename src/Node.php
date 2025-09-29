@@ -4,6 +4,7 @@ namespace Jade;
 
 abstract class Node
 {
+
     private int|string $value;
 
     private ?Node $next = null;
