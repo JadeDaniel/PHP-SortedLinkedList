@@ -23,7 +23,7 @@ abstract class Node
         return (string) $this->value;
     }
 
-    public function getValue(): int|string
+    public function value(): int|string
     {
         return $this->value;
     }

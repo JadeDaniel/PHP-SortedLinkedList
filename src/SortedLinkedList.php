@@ -34,10 +34,10 @@ class SortedLinkedList
 
         $n = $this->head;
         while ( $n->next() !== null) {
-            echo $n->getValue() . ' ';
+            echo $n->value() . ' ';
             $n = $n->next();
         }
-        echo $n->getValue() . ' ';
+        echo $n->value() . ' ';
         return '';
     }
 
@@ -111,7 +111,7 @@ class SortedLinkedList
         $array = [];
         $pointer = $this->head;
         while ($pointer !== null) {
-            $array[] = $pointer->getValue();
+            $array[] = $pointer->value();
             $pointer = $pointer->next();
         }
          return $array;
@@ -125,7 +125,7 @@ class SortedLinkedList
     public function find(int|string $value): ?Node
     {
         $node = $this->head;
-        while ($node !== null && $node->getValue() !== $value) {
+        while ($node !== null && $node->value() !== $value) {
             $node = $node->next();
         }
         return $node;

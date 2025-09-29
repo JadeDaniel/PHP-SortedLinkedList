@@ -78,23 +78,23 @@ class SortedLinkedListTest extends TestCase
 
         $node = $list->first();
         $this->assertNotNull($node);
-        $this->assertEquals(4, $node->getValue());
+        $this->assertEquals(4, $node->value());
 
         $node = $node->next();
         $this->assertNotNull($node);
-        $this->assertEquals(6, $node->getValue());
+        $this->assertEquals(6, $node->value());
 
         $node = $node->next();
         $this->assertNotNull($node);
-        $this->assertEquals(10, $node->getValue());
+        $this->assertEquals(10, $node->value());
 
         $node = $node->previous();
         $this->assertNotNull($node);
-        $this->assertEquals(6, $node->getValue());
+        $this->assertEquals(6, $node->value());
 
         $node = $node->previous();
         $this->assertNotNull($node);
-        $this->assertEquals(4, $node->getValue());
+        $this->assertEquals(4, $node->value());
     }
 
     public function testFind(): void

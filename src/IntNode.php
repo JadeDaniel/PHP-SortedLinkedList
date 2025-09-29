@@ -12,9 +12,9 @@ class IntNode extends Node
         parent::__construct($value);
     }
 
-    public function getValue(): int
+    public function value(): int
     {
-        return (int) parent::getValue();
+        return (int) parent::value();
     }
 
     public function greaterThan(Node $other): bool
@@ -22,7 +22,7 @@ class IntNode extends Node
         if (!$other instanceof IntNode) {
             throw new Exception('Invalid comparison between IntNode and ' . $other::class);
         }
-        return $this->getValue() > $other->getValue();
+        return $this->value() > $other->value();
     }
 
 }

@@ -12,9 +12,9 @@ class StringNode extends Node
         parent::__construct($value);
     }
 
-    public function getValue(): string
+    public function value(): string
     {
-        return (string) parent::getValue();
+        return (string) parent::value();
     }
 
     /**
@@ -25,7 +25,7 @@ class StringNode extends Node
         if (!$other instanceof StringNode) {
             throw new Exception('Invalid comparison between StringNode and ' . $other::class);
         }
-        return $this->getValue() > $other->getValue();
+        return $this->value() > $other->value();
     }
 
 }
