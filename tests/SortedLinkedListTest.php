@@ -162,15 +162,13 @@ class SortedLinkedListTest extends TestCase
     public function testToString(): void
     {
         $list = $this->sampleStringList();
-        $this->assertEquals("Africa, Botswana, Zanzibar, Zanzicar", (String) $list);
-
+        $this->assertEquals('Africa, Botswana, Zanzibar, Zanzicar', (string) $list);
 
         $list = $this->sampleIntList();
-        $this->assertEquals("4, 6, 10", (String) $list);
-
+        $this->assertEquals('4, 6, 10', (string) $list);
 
         $list = new SortedLinkedList();
-        $this->assertEquals("Empty List", (String) $list);
+        $this->assertEquals('Empty List', (string) $list);
     }
 
     public function sampleIntList(): SortedLinkedList

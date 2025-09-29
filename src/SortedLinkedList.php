@@ -6,6 +6,7 @@ use Exception;
 use InvalidArgumentException;
 use function is_int;
 use function is_string;
+use function join;
 
 class SortedLinkedList
 {
@@ -32,7 +33,7 @@ class SortedLinkedList
             return 'Empty List';
         }
 
-        return join(", ", $this->toArray());
+        return join(', ', $this->toArray());
     }
 
     /**
