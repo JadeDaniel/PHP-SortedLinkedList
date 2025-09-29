@@ -32,13 +32,7 @@ class SortedLinkedList
             return 'Empty List';
         }
 
-        $n = $this->head;
-        while ( $n->next() !== null) {
-            echo $n->value() . ' ';
-            $n = $n->next();
-        }
-        echo $n->value() . ' ';
-        return '';
+        return join(", ", $this->toArray());
     }
 
     /**

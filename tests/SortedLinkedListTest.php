@@ -121,16 +121,6 @@ class SortedLinkedListTest extends TestCase
         $this->assertSame([4, 10], $list->toArray());
     }
 
-    public function sampleIntList(): SortedLinkedList
-    {
-        return new SortedLinkedList([10, 4, 6]);
-    }
-
-    public function sampleStringList(): SortedLinkedList
-    {
-        return new SortedLinkedList(['Zanzibar', 'Africa', 'Botswana', 'Zanzicar']);
-    }
-
     public function testExplicitIntNodeConstructor(): void
     {
         $list1 = new SortedLinkedList();
@@ -167,6 +157,30 @@ class SortedLinkedListTest extends TestCase
         $list2 = new SortedLinkedList();
         $list2->add('Yikes');
         self::assertEquals($list1, $list2);
+    }
+
+    public function testToString(): void
+    {
+        $list = $this->sampleStringList();
+        $this->assertEquals("Africa, Botswana, Zanzibar, Zanzicar", (String) $list);
+
+
+        $list = $this->sampleIntList();
+        $this->assertEquals("4, 6, 10", (String) $list);
+
+
+        $list = new SortedLinkedList();
+        $this->assertEquals("Empty List", (String) $list);
+    }
+
+    public function sampleIntList(): SortedLinkedList
+    {
+        return new SortedLinkedList([10, 4, 6]);
+    }
+
+    public function sampleStringList(): SortedLinkedList
+    {
+        return new SortedLinkedList(['Zanzibar', 'Africa', 'Botswana', 'Zanzicar']);
     }
 
 }
